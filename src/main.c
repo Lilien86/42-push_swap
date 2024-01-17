@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:17:54 by lauger            #+#    #+#             */
-/*   Updated: 2024/01/17 13:26:36 by lauger           ###   ########.fr       */
+/*   Updated: 2024/01/17 14:09:14 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,42 +77,20 @@ void print_lst(const t_list *head)
 
 int	main(int ac, char **av)
 {
-	/*t_list	*head;
-	char	**tab_arg;
-	int		i;
-
-	head = NULL;
-	i = 1;
-	while (i < ac)
-	{
-		tab_arg = ft_split(av[i], ' ');
-		if (tab_arg == NULL || tab_arg[0] == 0)
-		{
-			ft_free_lst(head);
-			ft_printf("Error:\nthe format is not correct\n");
-			exit(0);
-		}
-		int j = 0;
-		while (tab_arg[j] != NULL)
-		{
-			if (check_sign(tab_arg[j]) == -1 || check_int(tab_arg[j]) == -1 ||
-				compare_value_list(ft_atol(tab_arg[j]), head) == -1)
-			{
-				ft_free_tab(tab_arg);
-				ft_free_lst(head);
-				ft_printf("Error:\nthe format is not correct\n");
-				exit(0);
-			}
-			else
-				ft_lstadd_back((t_list**)&head, ft_lstnew((void*)ft_atol(tab_arg[j])));
-			j++;
-		}
-		ft_free_tab(tab_arg);
-		i++;
-	}
-	print_lst(head);
-	ft_free_lst(head);*/
-	arg_to_lst(ac, av);
+	t_list	*head;
 	
+	head = arg_to_lst(ac, av);
+	print_lst(head);
+	if (head->next == NULL)
+	{
+		ft_free_lst(head);
+		ft_printf("%p\nHEAD = NULL\n", head->next);
+		return (0);
+	}
+	write (1, "\n", 1);
+	swap_a(&head);
+	print_lst(head);
+
+	ft_free_lst(head);
 	return (0);
 }

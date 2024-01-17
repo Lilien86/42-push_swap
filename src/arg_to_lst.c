@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int check_and_add_list(char *arg, t_list **head, char **tab)
+int	check_and_add_list(char *arg, t_list **head, char **tab)
 {
 	if (check_sign(arg) == -1 || check_int(arg) == -1 ||
 			compare_value_list(ft_atol(arg), *head) == -1)
@@ -54,12 +54,11 @@ void	managing_arg(int ac, char **av, t_list **head)
 	}
 }
 
-void arg_to_lst(int ac, char **av)
+t_list	*arg_to_lst(int ac, char **av)
 {
 	t_list		*head;
 
 	head = NULL;
 	managing_arg(ac, av, &head);
-	print_lst(head);
-	ft_free_lst(head);
+	return (head);
 }
