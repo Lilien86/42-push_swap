@@ -1,45 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/17 13:42:40 by lauger            #+#    #+#             */
-/*   Updated: 2024/01/18 13:16:48 by lauger           ###   ########.fr       */
+/*   Created: 2024/01/18 13:56:58 by lauger            #+#    #+#             */
+/*   Updated: 2024/01/18 13:59:22 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap_a(t_list **stack_a)
+void pushAtoB(t_list** stackA, t_list** stackB)
 {
-	int	*temp;
-	
-	temp = NULL;
-	if (*stack_a != NULL && (*stack_a)->next != NULL)
+	t_list	*firstt_listA;
+
+	if (*stackA != NULL)
 	{
-		temp = (int *)(*stack_a)->content;
-        (*stack_a)->content = (*stack_a)->next->content;
-        (*stack_a)->next->content = temp;
+		firstt_listA = *stackA;
+		*stackA = (*stackA)->next;
+		if (*stackB == NULL)
+		{
+			*stackB = firstt_listA;
+			(*stackB)->next = NULL;
+		} else
+		{
+			firstt_listA->next = *stackB;
+			*stackB = firstt_listA;
+		}
 	}
 }
-/*
-void swap_b(Node **stack_b)
-{
-	swap_a(stack_b);
-}
-
-void swap_both(Node **stack_a, Node **stack_b)
-{
-	swap_a(stack_a);
-	swap_b(stack_b);
-}*/
-
-
-
-
-
-
-
-

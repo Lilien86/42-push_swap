@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:17:54 by lauger            #+#    #+#             */
-/*   Updated: 2024/01/17 14:09:14 by lauger           ###   ########.fr       */
+/*   Updated: 2024/01/18 14:04:42 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,11 @@ void print_lst(const t_list *head)
 int	main(int ac, char **av)
 {
 	t_list	*head;
+	t_list	*second;
 	
 	head = arg_to_lst(ac, av);
 	print_lst(head);
+	second = NULL;
 	if (head->next == NULL)
 	{
 		ft_free_lst(head);
@@ -88,8 +90,14 @@ int	main(int ac, char **av)
 		return (0);
 	}
 	write (1, "\n", 1);
+
+	rotate_a(&head);
 	swap_a(&head);
+	r_rotate_a(&head);
+	pushAtoB(&head, &second);
+	
 	print_lst(head);
+	print_lst(second);
 
 	ft_free_lst(head);
 	return (0);

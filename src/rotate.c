@@ -1,45 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/17 13:42:40 by lauger            #+#    #+#             */
-/*   Updated: 2024/01/18 13:16:48 by lauger           ###   ########.fr       */
+/*   Created: 2024/01/18 13:00:40 by lauger            #+#    #+#             */
+/*   Updated: 2024/01/18 13:13:51 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap_a(t_list **stack_a)
+void rotate_a(t_list **head)
 {
-	int	*temp;
-	
-	temp = NULL;
-	if (*stack_a != NULL && (*stack_a)->next != NULL)
+	t_list	*firstNode;
+	t_list	*temp;
+
+	if (*head != NULL && (*head)->next != NULL)
 	{
-		temp = (int *)(*stack_a)->content;
-        (*stack_a)->content = (*stack_a)->next->content;
-        (*stack_a)->next->content = temp;
+		firstNode = *head;
+		*head = (*head)->next;
+		firstNode->next = NULL;
+
+		temp = *head;
+		while (temp->next != NULL)
+			temp = temp->next;
+		temp->next = firstNode;
 	}
 }
 /*
-void swap_b(Node **stack_b)
+void rotate_b(t_list **head)
 {
-	swap_a(stack_b);
+	rotate_a(head);
 }
 
-void swap_both(Node **stack_a, Node **stack_b)
+void rotate_a_b(t_list **head)
 {
-	swap_a(stack_a);
-	swap_b(stack_b);
+	rotate_a(head);
+	rotate_a(head);
 }*/
-
-
-
-
-
-
-
-

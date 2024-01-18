@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 11:07:07 by lauger            #+#    #+#             */
-/*   Updated: 2024/01/17 13:51:49 by lauger           ###   ########.fr       */
+/*   Updated: 2024/01/18 14:02:10 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,9 @@ int		check_int(char *s);
 int		check_sign(char *s);
 
 void	swap_a(t_list **stack_a);
+void	rotate_a(t_list **head);
+void	r_rotate_a(t_list **head);
+void	pushAtoB(t_list **stackA, t_list **stackB);
+
 
 #endif
