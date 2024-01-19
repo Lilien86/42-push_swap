@@ -22,7 +22,7 @@ int	check_and_add_list(char *arg, t_list **head, char **tab)
 			compare_value_list(ft_atol(arg), *head) == -1)
 	{
 		if (head)	
-			ft_free_lst(*head);
+			ft_lstclear(head, free_content);
 		if (tab)
 			ft_free_tab(tab);
 		ft_printf("Error:\nthe format is not correct\n");
