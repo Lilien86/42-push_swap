@@ -6,11 +6,15 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:17:54 by lauger            #+#    #+#             */
-/*   Updated: 2024/01/18 14:04:42 by lauger           ###   ########.fr       */
+/*   Updated: 2024/01/19 14:28:44 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int find_smalest(t_list* head);
+int find_bigest(t_list* head);
+int	is_ascending(t_list *head);
 
 int	check_sign(char *s)
 {
@@ -69,36 +73,33 @@ void print_lst(const t_list *head)
 	int i = 0;
 	while (current != NULL)
 	{
-		ft_printf("\n%d: %d -> \n", i, (int *)current->content);
+		ft_printf("\n%d: %d -> \n", i, *(int *)current->content);
 		current = current->next;
 		i++;
+	}
+}
+
+void	free_content(void *content)
+{
+	if (content)
+	{
+		free(content);
+		content = NULL;
 	}
 }
 
 int	main(int ac, char **av)
 {
 	t_list	*head;
-	t_list	*second;
-	
-	head = arg_to_lst(ac, av);
-	print_lst(head);
-	second = NULL;
-	if (head->next == NULL)
-	{
-		ft_free_lst(head);
-		ft_printf("%p\nHEAD = NULL\n", head->next);
-		return (0);
-	}
-	write (1, "\n", 1);
 
-	rotate_a(&head);
-	swap_a(&head);
-	r_rotate_a(&head);
-	pushAtoB(&head, &second);
-	
-	print_lst(head);
-	print_lst(second);
-
+	head = NULL;
+	arg_to_lst(head, ac, av);
 	ft_free_lst(head);
+	return (0);
+
+	if (ft_lstsize(head) == 3)
+		three_hit(head);
+	print_lst(head);
+	ft_lstclear(&head, free_content);
 	return (0);
 }

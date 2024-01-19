@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 11:07:07 by lauger            #+#    #+#             */
-/*   Updated: 2024/01/18 14:02:10 by lauger           ###   ########.fr       */
+/*   Updated: 2024/01/19 14:31:00 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include "libft.h"
 
 
-t_list	*arg_to_lst(int ac, char **av);
+void	arg_to_lst(t_list *head, int ac, char **av);
 
 void	print_lst(const t_list *head);
 int		compare_value_list(long long value_compare, t_list *head);
@@ -29,6 +29,10 @@ void	swap_a(t_list **stack_a);
 void	rotate_a(t_list **head);
 void	r_rotate_a(t_list **head);
 void	pushAtoB(t_list **stackA, t_list **stackB);
+
+void	three_hit(t_list *head);
+
+void	free_content(void *content);
 
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 13:21:22 by lauger            #+#    #+#             */
-/*   Updated: 2024/01/18 13:49:15 by lauger           ###   ########.fr       */
+/*   Updated: 2024/01/19 10:36:49 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,18 @@ void r_rotate_a(t_list **head)
 			*head = lastNode;
 		}
 	}
+	ft_printf("rra\n");
 }
 /*
 void r_rotate_b(t_list** head)
 {
 	r_rotate_a(&head);
+	ft_printf("rrb\n");
 }
 
 void r_rotate_a_b(t_list** head)
 {
 	r_rotate_a(&head);
 	r_rotate_b(&head);
+	ft_printf("rrr\n");
 }*/

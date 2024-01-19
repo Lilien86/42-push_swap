@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 13:56:58 by lauger            #+#    #+#             */
-/*   Updated: 2024/01/18 13:59:22 by lauger           ###   ########.fr       */
+/*   Updated: 2024/01/19 10:35:48 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,5 @@ void pushAtoB(t_list** stackA, t_list** stackB)
 			*stackB = firstt_listA;
 		}
 	}
+	ft_printf("pb\n");
 }
