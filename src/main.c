@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:17:54 by lauger            #+#    #+#             */
-/*   Updated: 2024/01/22 10:05:55 by marvin           ###   ########.fr       */
+/*   Updated: 2024/01/22 12:54:45 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,10 @@ void	free_content(void *content)
 int	main(int ac, char **av)
 {
 	t_list	*head;
+	t_list	*second;
 
 	head = NULL;
+	second = NULL;
 	head = arg_to_lst(head, ac, av);
 	if (head == NULL)
 	{
@@ -100,11 +102,14 @@ int	main(int ac, char **av)
 		return 0;
 	}
 	print_lst(head);
-	//ft_free_lst(head);
-	//return (0);
+
 	if (ft_lstsize(head) == 3)
 		three_hit(head);
-	print_lst(head);
+	else if (ft_lstsize(head) == 5)
+		five_hit(head, second);
+
+	//print_lst(head);
+	//print_lst(second);
 	ft_lstclear(&head, free_content);
 	return (0);
 }

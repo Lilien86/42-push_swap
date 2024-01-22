@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 11:07:07 by lauger            #+#    #+#             */
-/*   Updated: 2024/01/22 09:55:35 by marvin           ###   ########.fr       */
+/*   Updated: 2024/01/22 14:08:43 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,15 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include "libft.h"
+
+typedef struct s_info_lst
+{
+    int     bigest;
+	int     smalest;
+	int	    bigest_value;
+	int	    smalest_value;
+	int     size;
+}   t_info_lst;
 
 
 t_list	*arg_to_lst(t_list *head, int ac, char **av);
@@ -30,7 +39,11 @@ void	rotate_a(t_list **head);
 void	r_rotate_a(t_list **head);
 void	pushAtoB(t_list **stackA, t_list **stackB);
 
+int     find_smalest(t_list* head);
+int     find_bigest(t_list* head);
+
 void	three_hit(t_list *head);
+void    five_hit(t_list *head, t_list *second);
 
 void	free_content(void *content);
 
