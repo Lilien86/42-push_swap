@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 11:07:07 by lauger            #+#    #+#             */
-/*   Updated: 2024/01/19 14:31:00 by lauger           ###   ########.fr       */
+/*   Updated: 2024/01/22 09:55:35 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include "libft.h"
 
 
-void	arg_to_lst(t_list *head, int ac, char **av);
+t_list	*arg_to_lst(t_list *head, int ac, char **av);
 
 void	print_lst(const t_list *head);
 int		compare_value_list(long long value_compare, t_list *head);

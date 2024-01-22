@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:17:54 by lauger            #+#    #+#             */
-/*   Updated: 2024/01/19 14:28:44 by lauger           ###   ########.fr       */
+/*   Updated: 2024/01/22 10:05:55 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,10 +93,15 @@ int	main(int ac, char **av)
 	t_list	*head;
 
 	head = NULL;
-	arg_to_lst(head, ac, av);
-	ft_free_lst(head);
-	return (0);
-
+	head = arg_to_lst(head, ac, av);
+	if (head == NULL)
+	{
+		ft_printf("head = NULL, %p\n", head);
+		return 0;
+	}
+	print_lst(head);
+	//ft_free_lst(head);
+	//return (0);
 	if (ft_lstsize(head) == 3)
 		three_hit(head);
 	print_lst(head);

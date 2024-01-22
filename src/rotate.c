@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 13:00:40 by lauger            #+#    #+#             */
-/*   Updated: 2024/01/19 10:37:10 by lauger           ###   ########.fr       */
+/*   Updated: 2024/01/22 10:34:18 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void rotate_a(t_list **head)
+/*void rotate_a(t_list **head)
 {
 	t_list	*firstNode;
 	t_list	*temp;
@@ -29,6 +29,30 @@ void rotate_a(t_list **head)
 		temp->next = firstNode;
 	}
 	ft_printf("ra\n");
+}*/
+
+void rotate_a(t_list **head)
+{
+ 	t_list *temp;
+    int firstValue;
+
+    if (*head != NULL && (*head)->next != NULL)
+    {
+        // Sauvegarde de la valeur du premier nœud
+        firstValue = *((int*)((*head)->content));
+
+        // Déplacement des valeurs
+        temp = *head;
+        while (temp->next != NULL)
+        {
+            *((int*)(temp->content)) = *((int*)((temp->next)->content));
+            temp = temp->next;
+        }
+
+        // Affectation de la première valeur au dernier nœud
+        *((int*)(temp->content)) = firstValue;
+    }
+    ft_printf("ra\n");
 }
 /*
 void rotate_b(t_list **head)

@@ -18,10 +18,9 @@ int	check_and_add_list(char *arg, t_list **head, char **tab)
 	int			*ptr;
 	t_list		*lst;
 
-	if (check_sign(arg) == -1 || check_int(arg) == -1 ||
-			compare_value_list(ft_atol(arg), *head) == -1)
+	if (check_sign(arg) == -1 || check_int(arg) == -1 || compare_value_list(ft_atol(arg), *head) == -1)
 	{
-		if (head)	
+		if (*head)	
 			ft_lstclear(head, free_content);
 		if (tab)
 			ft_free_tab(tab);
@@ -51,10 +50,11 @@ void	managing_arg(int ac, char **av, t_list **head)
 		tab_arg = ft_split(av[i], ' ');
 		if (tab_arg == NULL || tab_arg[0] == 0)
 		{
-			if (head)
+			if (*head)
 				ft_lstclear(head, free_content);
+			if (tab_arg)
+				ft_free_tab(tab_arg);
 			ft_printf("Error:\nthe format is not correct\n");
-			ft_free_tab(tab_arg);
 			exit(0);
 		}
 		j = 0;
@@ -65,8 +65,10 @@ void	managing_arg(int ac, char **av, t_list **head)
 	}
 }
 
-void	arg_to_lst(t_list *head, int ac, char **av)
+t_list	*arg_to_lst(t_list *head, int ac, char **av)
 {
 	managing_arg(ac, av, &head);
-	ft_lstclear(&head, free_content);
+	//ft_lstclear(&head, free_content);
+	return (head);
+	
 }

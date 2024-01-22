@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   three_hit.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 08:25:16 by lauger            #+#    #+#             */
-/*   Updated: 2024/01/19 13:50:32 by lauger           ###   ########.fr       */
+/*   Updated: 2024/01/22 10:27:06 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,20 +85,16 @@ void	three_hit(t_list *head)
 
 	bigest = find_bigest(head);
 	smalest = find_smalest(head);
+	if (is_ascending(head) == 1)
+		return ;
 	while (is_ascending(head) == 0)
 	{
+		bigest = find_bigest(head);
+		smalest = find_smalest(head);
 		if (bigest > smalest)
-		{
 			swap_a(&head);
-			bigest = find_bigest(head);
-			smalest = find_smalest(head);
-		}
-		if (bigest < smalest)
-		{
+		else if (bigest < smalest)
 			rotate_a(&head);
-			bigest = find_bigest(head);
-			smalest = find_smalest(head);
-		}
 	}
 	//print_lst(head);
 }
