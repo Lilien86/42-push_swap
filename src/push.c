@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 13:56:58 by lauger            #+#    #+#             */
-/*   Updated: 2024/01/19 10:35:48 by lauger           ###   ########.fr       */
+/*   Updated: 2024/01/23 13:30:09 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,25 @@ void pushAtoB(t_list** stackA, t_list** stackB)
 		}
 	}
 	ft_printf("pb\n");
+}
+
+void pushBtoA(t_list** stackB, t_list** stackA)
+{
+	t_list	*firstt_listB;
+
+	if (*stackB != NULL)
+	{
+		firstt_listB = *stackB;
+		*stackB = (*stackB)->next;
+		if (*stackA == NULL)
+		{
+			*stackA = firstt_listB;
+			(*stackA)->next = NULL;
+		} else
+		{
+			firstt_listB->next = *stackA;
+			*stackA = firstt_listB;
+		}
+	}
+	ft_printf("pa\n");
 }

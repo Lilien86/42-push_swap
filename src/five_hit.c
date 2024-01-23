@@ -148,4 +148,10 @@ void    five_hit(t_list **head, t_list **second)
 			make_up_and_push(info.smalest, head, second);
 	}
 	three_hit(head);
+	pushAtoB(second, head);
+	if (is_ascending(*head) == 0)
+		rotate_a(head);
+	pushBtoA(second, head);
+	if (is_ascending(*head) == 0)
+		rotate_a(head);
 }
