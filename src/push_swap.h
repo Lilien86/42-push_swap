@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 11:07:07 by lauger            #+#    #+#             */
-/*   Updated: 2024/01/22 14:08:43 by marvin           ###   ########.fr       */
+/*   Updated: 2024/01/23 12:57:37 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ void	rotate_a(t_list **head);
 void	r_rotate_a(t_list **head);
 void	pushAtoB(t_list **stackA, t_list **stackB);
 
-int     find_smalest(t_list* head);
-int     find_bigest(t_list* head);
+int     find_smalest(t_list *head);
+int     find_bigest(t_list *head);
 
-void	three_hit(t_list *head);
-void    five_hit(t_list *head, t_list *second);
+void	three_hit(t_list **head);
+void    five_hit(t_list **head, t_list **second);
 
 void	free_content(void *content);
 

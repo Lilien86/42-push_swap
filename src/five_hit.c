@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-static int find_value_smalest(t_list* head)
+static int find_value_smalest(t_list *head)
 {
 	t_list*	current;
 	int		smalest;
@@ -32,7 +32,7 @@ static int find_value_smalest(t_list* head)
 	return (smalest);
 }
 
-static int find_value_bigest(t_list* head)
+static int find_value_bigest(t_list *head)
 {
 	t_list*	current;
 	int		bigest;
@@ -51,59 +51,101 @@ static int find_value_bigest(t_list* head)
 	return (bigest);
 }
 
-static void		make_up_and_push(t_info_lst info, t_list *head, t_list *second)
+static int	find_position(t_list *head, int value)
 {
-	int	i;
+    int position = 0;
+    t_list *current = head;
 
-	i = 0;
-	if (find_value_bigest(head) == info.bigest_value && info.bigest < info.smalest)
+    while (current != NULL)
 	{
-		while (i < info.bigest)
+        if (*(int *)(current->content) == value)
+            return position;
+        current = current->next;
+        position++;
+    }
+    return -1;
+}
+
+int is_value_in_list(t_list *head, int value)
+{
+    t_list *current = head;
+
+    while (current != NULL) {
+        if (*(int *)(current->content) == value)
 		{
-			i++;
-			rotate_a(&head);
-			info.bigest--;
-		}
-		pushAtoB(&head, &second);
+            return 1;
+        }
+        current = current->next;
+    }
+    return 0;
+}
+
+static void make_up_and_push(int position, t_list **head, t_list **second)
+{
+    int i = 0;
+    while (i < position) {
+        rotate_a(head);
+        i++;
+    }
+    pushAtoB(head, second);
+}
+
+void move_indexfor_end(t_info_lst *info,  t_list **head, t_list **second)
+{
+	if (info->smalest == info->size)
+	{
+		r_rotate_a(head);
+		pushAtoB(head, second);
+		info->size--;
+		info->bigest = find_position(*head, info->bigest_value);
+		info->smalest = 5;
 	}
-	else if (find_value_smalest(head) == info.smalest_value)
+	else if (info->bigest == info->size)
 	{
-		while (i < info.smalest)
-		{
-			i++;
-			rotate_a(&head);
-		}
-		pushAtoB(&head, &second);
+		r_rotate_a(head);
+		pushAtoB(head,second);
+		info->size--;
+		info->smalest = find_position(*head, info->smalest_value);
+		info->bigest = 5;
 	}
 }
 
-void    five_hit(t_list *head, t_list *second)
+void	move_indexfor_zero(t_info_lst *info,  t_list **head, t_list **second)
+{
+	if (info->bigest == 0)
+	{
+		pushAtoB(head, second);
+		info->smalest = find_position(*head, info->smalest_value);
+		info->bigest = 5;
+	}
+	else if (info->smalest == 0)
+	{
+		pushAtoB(head, second);
+		info->bigest = find_position(*head, info->bigest_value);
+		info->smalest = 5;
+	}
+}
+
+void    five_hit(t_list **head, t_list **second)
 {
 	t_info_lst	info;
 
-	info.bigest = find_bigest(head);
-	info.smalest = find_smalest(head);
-	info.bigest_value = find_value_bigest(head);
-	info.smalest_value = find_value_smalest(head);
+	info.bigest_value = find_value_bigest(*head);
+	info.smalest_value = find_value_smalest(*head);
+	info.bigest = find_position(*head, info.bigest_value);
+	info.smalest = find_position(*head, info.smalest_value);
 	info.size = 4;
 
-	while (info.bigest == 0 || info.smalest == 0)
+	move_indexfor_end(&info, head, second);
+	move_indexfor_zero(&info, head, second);
+	while (is_value_in_list(*head, info.bigest_value) || is_value_in_list(*head, info.smalest_value))
 	{
-		pushAtoB(&head, &second);
-		info.bigest = find_bigest(head);
-		info.smalest = find_smalest(head);
+		info.bigest = find_position(*head, info.bigest_value);
+		info.smalest = find_position(*head, info.smalest_value);
+		if ((info.bigest <= info.smalest || !is_value_in_list(*head, info.smalest_value)) && is_value_in_list(*head, info.bigest_value))
+			make_up_and_push(info.bigest, head, second);
+		else if ((info.smalest < info.bigest || !is_value_in_list(*head, info.bigest_value)) && is_value_in_list(*head, info.smalest_value))
+			make_up_and_push(info.smalest, head, second);
 	}
-	while (info.bigest == info.size || info.smalest == info.size)
-	{
-		r_rotate_a(&head);
-		pushAtoB(&head, &second);
-		if (find_value_bigest(head) == info.bigest_value)
-			info.bigest = find_bigest(head);
-		if (find_value_smalest(head) == info.smalest_value)
-			info.smalest = find_smalest(head);
-		info.size--;
-	}
-	make_up_and_push(info, head, second);
-	print_lst(head);
-	print_lst(second);
+	three_hit(head);
 }

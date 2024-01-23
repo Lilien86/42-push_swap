@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:17:54 by lauger            #+#    #+#             */
-/*   Updated: 2024/01/22 12:54:45 by marvin           ###   ########.fr       */
+/*   Updated: 2024/01/23 13:22:50 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ int compare_value_list(long long value_compare, t_list *head)
 	current = head;
 	while (current != NULL)
 	{
-		if ((long long)current->content == value_compare)
-			return (-1);
+		if (*(int *)(current->content) == value_compare)
+    		return (-1);
 		current = current->next;
 	}
 	return 0;
@@ -104,12 +104,12 @@ int	main(int ac, char **av)
 	print_lst(head);
 
 	if (ft_lstsize(head) == 3)
-		three_hit(head);
+		three_hit(&head);
 	else if (ft_lstsize(head) == 5)
-		five_hit(head, second);
-
-	//print_lst(head);
-	//print_lst(second);
+		five_hit(&head, &second);
+	print_lst(head);
+	print_lst(second);
 	ft_lstclear(&head, free_content);
+	ft_lstclear(&second, free_content);
 	return (0);
 }

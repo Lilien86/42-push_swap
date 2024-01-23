@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 08:25:16 by lauger            #+#    #+#             */
-/*   Updated: 2024/01/22 10:27:06 by marvin           ###   ########.fr       */
+/*   Updated: 2024/01/23 12:46:10 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,23 +78,23 @@ int	is_ascending(t_list *head)
 }
 
 
-void	three_hit(t_list *head)
+void	three_hit(t_list **head)
 {
 	int	bigest;
 	int	smalest;
 
-	bigest = find_bigest(head);
-	smalest = find_smalest(head);
-	if (is_ascending(head) == 1)
+	bigest = find_bigest(*head);
+	smalest = find_smalest(*head);
+	if (is_ascending(*head) == 1)
 		return ;
-	while (is_ascending(head) == 0)
+	while (is_ascending(*head) == 0)
 	{
-		bigest = find_bigest(head);
-		smalest = find_smalest(head);
+		bigest = find_bigest(*head);
+		smalest = find_smalest(*head);
 		if (bigest > smalest)
-			swap_a(&head);
+			swap_a(head);
 		else if (bigest < smalest)
-			rotate_a(&head);
+			rotate_a(head);
 	}
 	//print_lst(head);
 }
