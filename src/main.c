@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:17:54 by lauger            #+#    #+#             */
-/*   Updated: 2024/01/23 13:22:50 by marvin           ###   ########.fr       */
+/*   Updated: 2024/01/24 16:57:33 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,5 @@ int	main(int ac, char **av)
 	print_lst(head);
 	print_lst(second);
 	ft_lstclear(&head, free_content);
-	ft_lstclear(&second, free_content);
 	return (0);
 }

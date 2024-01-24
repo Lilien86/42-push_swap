@@ -2,8 +2,6 @@ CFLAGS = -g -Wall -Wextra -Werror -I. -I./check_char -I./management_memory -I./s
 NAME = libft.a
 CC = cc
 
-SRC_DI = ./check_char ./management_memory ./string ./link_list ./ft_printf ./gnl
-
 SOURCES += \
     ./check_char/ft_isdigit.c \
     ./check_char/ft_isalnum.c \
