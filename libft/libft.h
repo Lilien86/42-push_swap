@@ -99,7 +99,7 @@ char		*ft_strjoin_modif(char *s1, char *s2);
 *///###################################
 
 int			ft_atoi_base(char *str, char *base);
-void		ft_free_tab(char **str);
+void		ft_free_tab_str(char **str);
 int			ft_strlen_map(char **map);
 char		**ft_strcpy_map(char **original, int height, int width);
 long long	ft_atol(const char *str);

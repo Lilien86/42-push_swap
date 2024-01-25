@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:17:54 by lauger            #+#    #+#             */
-/*   Updated: 2024/01/25 12:02:31 by lauger           ###   ########.fr       */
+/*   Updated: 2024/01/25 13:10:02 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,8 @@ int	main(int ac, char **av)
 	print_lst(head);
 	ft_printf("---second----\n");
 	print_lst(second);
-	ft_free_tab(pre_sort, size);
+
+	free(pre_sort);
 	ft_lstclear(&head, free_content);
 	return (0);
 }

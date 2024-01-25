@@ -23,7 +23,7 @@ int	check_and_add_list(char *arg, t_list **head, char **tab)
 		if (*head)	
 			ft_lstclear(head, free_content);
 		if (tab)
-			ft_free_tab(tab);
+			ft_free_tab_str(tab);
 		ft_printf("Error:\nthe format is not correct\n");
 		exit(0);
 	}
@@ -53,14 +53,14 @@ void	managing_arg(int ac, char **av, t_list **head)
 			if (*head)
 				ft_lstclear(head, free_content);
 			if (tab_arg)
-				ft_free_tab(tab_arg);
+				ft_free_tab_str(tab_arg);
 			ft_printf("Error:\nthe format is not correct\n");
 			exit(0);
 		}
 		j = 0;
 		while (tab_arg[j] != 0)
 			j += check_and_add_list(tab_arg[j], head, tab_arg);
-		ft_free_tab(tab_arg);
+		ft_free_tab_str(tab_arg);
 		i++;
 	}
 }
