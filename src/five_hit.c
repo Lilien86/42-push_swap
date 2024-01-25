@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   five_hit.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 11:13:27 by marvin            #+#    #+#             */
-/*   Updated: 2024/01/22 11:13:27 by marvin           ###   ########.fr       */
+/*   Updated: 2024/01/25 11:58:49 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,41 +53,41 @@ static int find_value_bigest(t_list *head)
 
 static int	find_position(t_list *head, int value)
 {
-    int position = 0;
-    t_list *current = head;
+	int position = 0;
+	t_list *current = head;
 
-    while (current != NULL)
+	while (current != NULL)
 	{
-        if (*(int *)(current->content) == value)
-            return position;
-        current = current->next;
-        position++;
-    }
-    return -1;
+		if (*(int *)(current->content) == value)
+			return position;
+		current = current->next;
+		position++;
+	}
+	return -1;
 }
 
 int is_value_in_list(t_list *head, int value)
 {
-    t_list *current = head;
+	t_list *current = head;
 
-    while (current != NULL) {
-        if (*(int *)(current->content) == value)
+	while (current != NULL) {
+		if (*(int *)(current->content) == value)
 		{
-            return 1;
-        }
-        current = current->next;
-    }
-    return 0;
+			return 1;
+		}
+		current = current->next;
+	}
+	return 0;
 }
 
 static void make_up_and_push(int position, t_list **head, t_list **second)
 {
-    int i = 0;
-    while (i < position) {
-        rotate_a(head);
-        i++;
-    }
-    pushAtoB(head, second);
+	int i = 0;
+	while (i < position) {
+		rotate_a(head);
+		i++;
+	}
+	pushAtoB(head, second);
 }
 
 void move_indexfor_end(t_info_lst *info,  t_list **head, t_list **second)
@@ -148,7 +148,7 @@ void    five_hit(t_list **head, t_list **second)
 			make_up_and_push(info.smalest, head, second);
 	}
 	three_hit(head);
-	pushAtoB(second, head);
+	pushBtoA(second, head);
 	if (is_ascending(*head) == 0)
 		rotate_a(head);
 	pushBtoA(second, head);

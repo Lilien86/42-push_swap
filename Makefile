@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
+#    By: lauger <lauger@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/11 09:46:39 by lauger            #+#    #+#              #
-#    Updated: 2024/01/22 11:30:22 by marvin           ###   ########.fr        #
+#    Updated: 2024/01/25 10:08:33 by lauger           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror -I $(LIBFT)
 LDFLAGS = -L $(LIBFT) -lft
 
-SRC = ./src/main.c ./src/arg_to_lst.c ./src/swap.c ./src/rotate.c ./src/r_rotate.c ./src/push.c ./src/three_hit.c ./src/five_hit.c
+SRC = ./src/main.c ./src/arg_to_lst.c ./src/swap.c ./src/rotate.c \
+./src/r_rotate.c ./src/push.c ./src/three_hit.c ./src/five_hit.c ./src/pre-sorting.c
 
 OBJ = $(SRC:.c=.o)
 

@@ -1,42 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_tab.c                                      :+:      :+:    :+:   */
+/*   ft_print_tab.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/15 09:26:20 by lauger            #+#    #+#             */
-/*   Updated: 2024/01/25 11:23:12 by lauger           ###   ########.fr       */
+/*   Created: 2024/01/25 09:42:35 by lauger            #+#    #+#             */
+/*   Updated: 2024/01/25 11:04:51 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include "libft.h"
 
-/*void	ft_free_tab(void **arr, int size)
-{
-	int i;
-
-	if (arr == NULL || *arr == NULL)
-		return;
-
-	for (i = 0; i < size; i++)
-	{
-		free(arr[i]);
-	}
-	free(arr);
-}*/
-
-void	ft_free_tab(char **str)
+void ft_print_tab(int *array, int size)
 {
 	int	i;
 
 	i = 0;
-	if (str == NULL || *str == NULL)
-		return ;
-	while (str[i])
+	while (i < size)
 	{
-		free(str[i]);
+		ft_printf("%d: %d ", i, array[i]);
+		ft_printf("\n");
 		i++;
 	}
-	free(str);
+	ft_printf("\n");
 }

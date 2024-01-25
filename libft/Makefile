@@ -51,6 +51,7 @@ SOURCES += \
     ./string/ft_strcpy_map.c \
     ./string/ft_strlen_map.c \
     ./string/ft_atol.c \
+	./string/ft_print_tab.c \
     ./link_list/ft_lstmap.c \
     ./link_list/ft_lstnew.c \
     ./link_list/ft_lstclear.c \
@@ -60,7 +61,8 @@ SOURCES += \
     ./link_list/ft_lstiter.c \
     ./link_list/ft_lstlast.c \
     ./link_list/ft_lstdelone.c \
-    ./link_list/ft_free_lst.c
+    ./link_list/ft_free_lst.c \
+	./sort/ft_sort_int_tab.c
 
 OBJECTS = $(SOURCES:.c=.o)
 

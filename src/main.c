@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:17:54 by lauger            #+#    #+#             */
-/*   Updated: 2024/01/24 16:57:33 by marvin           ###   ########.fr       */
+/*   Updated: 2024/01/25 12:02:31 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ int	main(int ac, char **av)
 {
 	t_list	*head;
 	t_list	*second;
+	int		*pre_sort;
 
 	head = NULL;
 	second = NULL;
@@ -102,13 +103,25 @@ int	main(int ac, char **av)
 		return 0;
 	}
 	print_lst(head);
+	ft_printf("\n");
 
 	if (ft_lstsize(head) == 3)
 		three_hit(&head);
 	else if (ft_lstsize(head) == 5)
 		five_hit(&head, &second);
+	
+	int size =  ft_lstsize(head);
+	pre_sort = list_to_array(head, &size);
+	ft_print_tab(pre_sort, ft_lstsize(head));
+	ft_sort_int_tab(pre_sort, size);
+	ft_printf("\n");
+	ft_print_tab(pre_sort, ft_lstsize(head));
+
+	ft_printf("---head----\n");
 	print_lst(head);
+	ft_printf("---second----\n");
 	print_lst(second);
+	ft_free_tab(pre_sort, size);
 	ft_lstclear(&head, free_content);
 	return (0);
 }

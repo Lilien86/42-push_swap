@@ -104,5 +104,6 @@ int			ft_strlen_map(char **map);
 char		**ft_strcpy_map(char **original, int height, int width);
 long long	ft_atol(const char *str);
 void		ft_free_lst(t_list *head);
-
+void		ft_print_tab(int *array, int size);
+void		ft_sort_int_tab(int *tab, unsigned int size);
 #endif
