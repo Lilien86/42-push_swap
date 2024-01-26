@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:17:54 by lauger            #+#    #+#             */
-/*   Updated: 2024/01/25 13:10:02 by lauger           ###   ########.fr       */
+/*   Updated: 2024/01/26 13:31:06 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,39 +90,46 @@ void	free_content(void *content)
 
 int	main(int ac, char **av)
 {
-	t_list	*head;
-	t_list	*second;
-	int		*pre_sort;
+	t_stacks	stacks;
 
-	head = NULL;
-	second = NULL;
-	head = arg_to_lst(head, ac, av);
-	if (head == NULL)
+	stacks.aaa = NULL;
+	stacks.bbb = NULL;
+	stacks.aaa = arg_to_lst(stacks.aaa, ac, av);
+	if (stacks.aaa == NULL)
 	{
-		ft_printf("head = NULL, %p\n", head);
+		ft_printf("head = NULL, %p\n", stacks.aaa);
 		return 0;
 	}
-	print_lst(head);
-	ft_printf("\n");
 
-	if (ft_lstsize(head) == 3)
-		three_hit(&head);
-	else if (ft_lstsize(head) == 5)
-		five_hit(&head, &second);
+	//for 3 and 5
+	if (ft_lstsize(stacks.aaa) == 3)
+		three_hit(&stacks.aaa);
+	else if (ft_lstsize(stacks.aaa) == 5)
+		five_hit(&stacks.aaa, &stacks.bbb);
 	
-	int size =  ft_lstsize(head);
-	pre_sort = list_to_array(head, &size);
-	ft_print_tab(pre_sort, ft_lstsize(head));
-	ft_sort_int_tab(pre_sort, size);
-	ft_printf("\n");
-	ft_print_tab(pre_sort, ft_lstsize(head));
+	//lst_to_tab
+	stacks.nb_elem =  ft_lstsize(stacks.aaa);
+	stacks.tab = list_to_array(stacks.aaa, &stacks.nb_elem);
+	
+	//print tab_to_sort
+	ft_sort_int_tab(stacks.tab, stacks.nb_elem);
+	//ft_printf("\n");
+	//ft_print_tab(stacks.tab, ft_lstsize(stacks.aaa));
+	
+	//ft_printf("---head----\n");
+	//print_lst(stacks.aaa);
+	//ft_printf("---second----\n");
+	//print_lst(stacks.bbb);
+	
+	dychotomy(stacks);
 
-	ft_printf("---head----\n");
-	print_lst(head);
-	ft_printf("---second----\n");
-	print_lst(second);
-
-	free(pre_sort);
-	ft_lstclear(&head, free_content);
+	//print final linked_lst
+	//ft_printf("---head----\n");
+	//print_lst(stacks.aaa);
+	//ft_printf("---second----\n");
+	//print_lst(stacks.bbb);
+	
+	free(stacks.tab);
+	ft_lstclear(&stacks.aaa, free_content);
 	return (0);
 }
