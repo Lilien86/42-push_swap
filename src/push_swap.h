@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 11:07:07 by lauger            #+#    #+#             */
-/*   Updated: 2024/01/26 11:24:13 by lauger           ###   ########.fr       */
+/*   Updated: 2024/01/29 14:31:41 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,16 @@ typedef struct s_stacks
 	int			nb_elem;
 }	t_stacks;
 
+typedef struct s_move
+{
+	int			target;
+	int			amount_a;
+	int			amount_b;
+	int			total_moves;
+}	t_move;
+
+t_move	*create_tab_of_target(t_stacks *stacks);
+void	move_cheapest(t_stacks *stacks);
 
 t_list	*arg_to_lst(t_list *head, int ac, char **av);
 
@@ -55,14 +65,18 @@ void	pushBtoA(t_list** stackB, t_list** stackA);
 
 int		find_smalest(t_list *head);
 int		find_bigest(t_list *head);
+int		find_value_smalest(t_list *head);
+int		find_value_bigest(t_list *head);
 int		is_ascending(t_list *head);
 int		*list_to_array(t_list *head, int *size);
-void	dychotomy(t_stacks stacks);
+void	dychotomy(t_stacks *stacks);
 
 void	three_hit(t_list **head);
 void	five_hit(t_list **head, t_list **second);
 
 void	free_content(void *content);
+
+t_move	test(t_stacks stacks);
 
 
 #endif

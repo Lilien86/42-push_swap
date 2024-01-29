@@ -6,13 +6,13 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 11:13:27 by marvin            #+#    #+#             */
-/*   Updated: 2024/01/25 11:58:49 by lauger           ###   ########.fr       */
+/*   Updated: 2024/01/29 10:37:46 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int find_value_smalest(t_list *head)
+int find_value_smalest(t_list *head)
 {
 	t_list*	current;
 	int		smalest;
@@ -32,7 +32,7 @@ static int find_value_smalest(t_list *head)
 	return (smalest);
 }
 
-static int find_value_bigest(t_list *head)
+int find_value_bigest(t_list *head)
 {
 	t_list*	current;
 	int		bigest;

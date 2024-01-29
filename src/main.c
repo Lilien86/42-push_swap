@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:17:54 by lauger            #+#    #+#             */
-/*   Updated: 2024/01/26 13:31:06 by lauger           ###   ########.fr       */
+/*   Updated: 2024/01/29 14:54:49 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,6 @@ int	main(int ac, char **av)
 		return 0;
 	}
 
-	//for 3 and 5
 	if (ft_lstsize(stacks.aaa) == 3)
 		three_hit(&stacks.aaa);
 	else if (ft_lstsize(stacks.aaa) == 5)
@@ -121,14 +120,39 @@ int	main(int ac, char **av)
 	//ft_printf("---second----\n");
 	//print_lst(stacks.bbb);
 	
-	dychotomy(stacks);
-
-	//print final linked_lst
-	//ft_printf("---head----\n");
-	//print_lst(stacks.aaa);
-	//ft_printf("---second----\n");
-	//print_lst(stacks.bbb);
+	dychotomy(&stacks);
 	
+	//print final linked_lst
+	// ft_printf("---head----\n");
+	// print_lst(stacks.aaa);
+	// ft_printf("---second----\n");
+	// print_lst(stacks.bbb);
+	
+	while (stacks.bbb)
+	{
+		move_cheapest(&stacks);
+	}
+
+	int smallest_idx = find_smalest(stacks.aaa);
+	int i = 0;
+	while (i < smallest_idx)
+	{
+		rotate_a(&stacks.aaa);
+		i++;
+	}
+	
+	//print final linked_lst
+	// ft_printf("---head----\n");
+	// print_lst(stacks.aaa);
+	// ft_printf("---second----\n");
+	// print_lst(stacks.bbb);
+	
+	// t_move move;
+	// move = test(stacks);
+	// ft_printf("value: %d\nmove: %d\n %d\n%d\n", move.target, move.amount_a, move.amount_b, move.total_moves);
+
+	
+
 	free(stacks.tab);
 	ft_lstclear(&stacks.aaa, free_content);
 	return (0);
