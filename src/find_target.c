@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 10:16:26 by lauger            #+#    #+#             */
-/*   Updated: 2024/01/29 14:47:00 by lauger           ###   ########.fr       */
+/*   Updated: 2024/01/31 10:47:01 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	find_target(int nb, t_stacks *stacks)
 	nb_move = 0;
 	if (nb > find_value_bigest(stacks->aaa)
 		|| nb < find_value_smalest(stacks->aaa))
-		return (find_value_smalest(stacks->aaa));
+			return (find_value_smalest(stacks->aaa));
 	while (current)
 	{
 		if (nb < *(int*)current->content)
@@ -57,6 +57,17 @@ int	find_target(int nb, t_stacks *stacks)
 	return (target);
 }
 
+int	mediane(t_list *list, int index)
+{
+	int	mediane;
+
+	mediane = ft_lstsize(list) / 2;
+	if (index <= mediane)
+		return (1);
+	else
+		return (2);
+}
+
 t_move	*create_tab_of_target(t_stacks *stacks)
 {
 	t_list	*curent_a;
@@ -68,12 +79,28 @@ t_move	*create_tab_of_target(t_stacks *stacks)
 	curent_b = stacks->bbb;
 	i = 0;
 	costs = malloc(sizeof(t_move) * ft_lstsize(stacks->bbb));
-	while (curent_b)
-	{
+	while (i < ft_lstsize(stacks->bbb))
+	{	
 		costs[i].target = find_target(*(int*)curent_b->content, stacks);
-		costs[i].amount_a = index_of_target(costs[i].target, stacks);
-		costs[i].amount_b = i;
-		costs[i].total_moves = costs[i].amount_a + costs[i].amount_b;
+		costs[i].med_a = mediane(stacks->aaa, index_of_target(costs[i].target, stacks));
+		costs[i].med_b = mediane(stacks->bbb, i);
+		if (costs[i].med_a == 1)
+			costs[i].amount_a = index_of_target(costs[i].target, stacks);
+		else
+			costs[i].amount_a = ft_lstsize(stacks->aaa) - index_of_target(costs[i].target, stacks);
+		if (costs[i].med_b == 1)
+			costs[i].amount_b = i;
+		else
+			costs[i].amount_b = ft_lstsize(stacks->bbb) - i;
+		if (costs[i].med_a == costs[i].med_b)
+		{
+			if (costs[i].amount_a < costs[i].amount_b)
+				costs[i].total_moves = costs[i].amount_b;
+			else
+				costs[i].total_moves = costs[i].amount_a;
+		}
+		else
+			costs[i].total_moves = costs[i].amount_a + costs[i].amount_b;
 		curent_b = curent_b->next;
 		i++;
 	}
@@ -95,16 +122,79 @@ void	move_cheapest(t_stacks *stacks)
 		i++;
 	}
 	i = 0;
-	while (i < cheapest.amount_a)
+	if (cheapest.med_a == cheapest.med_b)
 	{
-		rotate_a(&stacks->aaa);
-		i++;
+		if (cheapest.med_a == 1)
+		{
+			while (i < cheapest.amount_a && i < cheapest.amount_b)
+			{
+				rotate_a_b(&stacks->aaa, &stacks->bbb);
+				i++;
+			}
+			while (i < cheapest.amount_a)
+			{
+				rotate_a(&stacks->aaa);
+				i++;
+			}
+			while (i < cheapest.amount_b)
+			{
+				rotate_b(&stacks->bbb);
+				i++;
+			}
+		}
+		else
+		{
+			while (i < cheapest.amount_a && i < cheapest.amount_b)
+			{
+				r_rotate_a_b(&stacks->aaa, &stacks->bbb);
+				i++;
+			}
+			while (i < cheapest.amount_a)
+			{
+				r_rotate_a(&stacks->aaa);
+				i++;
+			}
+			while (i < cheapest.amount_b)
+			{
+				r_rotate_b(&stacks->bbb);
+				i++;
+			}
+		}
 	}
-	i = 0;
-	while (i < cheapest.amount_b)
+	else if (cheapest.med_a != cheapest.med_b)
 	{
-		rotate_b(&stacks->bbb);
-		i++;
+		if (cheapest.med_a == 1)
+		{
+			while (i < cheapest.amount_a)
+			{
+				rotate_a(&stacks->aaa);
+				i++;
+			}
+		}
+		else
+		{
+			while (i < cheapest.amount_a)
+			{
+				r_rotate_a(&stacks->aaa);
+				i++;
+			}
+		}
+		i = 0;
+		if (cheapest.med_b == 1)
+		{
+			while (i < cheapest.amount_b)
+			{
+				rotate_b(&stacks->bbb);
+				i++;
+			}
+		}
+		else
+		{
+			while (i < cheapest.amount_b)
+			{
+				r_rotate_b(&stacks->bbb);
+				i++;
+			}
+		}
 	}
-	pushBtoA(&stacks->bbb, &stacks->aaa);
 }

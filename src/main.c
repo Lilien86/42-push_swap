@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:17:54 by lauger            #+#    #+#             */
-/*   Updated: 2024/01/29 14:54:49 by lauger           ###   ########.fr       */
+/*   Updated: 2024/01/31 09:22:51 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void print_lst(const t_list *head)
 	int i = 0;
 	while (current != NULL)
 	{
-		ft_printf("\n%d: %d -> \n", i, *(int *)current->content);
+		// ft_printf("\n%d: %d -> \n", i, *(int *)current->content);
 		current = current->next;
 		i++;
 	}
@@ -97,7 +97,7 @@ int	main(int ac, char **av)
 	stacks.aaa = arg_to_lst(stacks.aaa, ac, av);
 	if (stacks.aaa == NULL)
 	{
-		ft_printf("head = NULL, %p\n", stacks.aaa);
+		// ft_printf("head = NULL, %p\n", stacks.aaa);
 		return 0;
 	}
 
@@ -112,46 +112,30 @@ int	main(int ac, char **av)
 	
 	//print tab_to_sort
 	ft_sort_int_tab(stacks.tab, stacks.nb_elem);
-	//ft_printf("\n");
-	//ft_print_tab(stacks.tab, ft_lstsize(stacks.aaa));
-	
-	//ft_printf("---head----\n");
-	//print_lst(stacks.aaa);
-	//ft_printf("---second----\n");
-	//print_lst(stacks.bbb);
-	
+
 	dychotomy(&stacks);
-	
-	//print final linked_lst
-	// ft_printf("---head----\n");
-	// print_lst(stacks.aaa);
-	// ft_printf("---second----\n");
-	// print_lst(stacks.bbb);
-	
+
 	while (stacks.bbb)
 	{
 		move_cheapest(&stacks);
+		pushBtoA(&stacks.bbb, &stacks.aaa);
+	}
+	
+	while (*(int *)stacks.aaa->content != find_value_smalest(stacks.aaa))
+	{
+		if (find_smalest(stacks.aaa) <= ft_lstsize(stacks.aaa) / 2)
+			rotate_a(&stacks.aaa);
+		if (find_smalest(stacks.aaa) > ft_lstsize(stacks.aaa) / 2)
+			r_rotate_a(&stacks.aaa);
 	}
 
-	int smallest_idx = find_smalest(stacks.aaa);
+	/*int smallest_idx = find_smalest(stacks.aaa);
 	int i = 0;
 	while (i < smallest_idx)
 	{
 		rotate_a(&stacks.aaa);
 		i++;
-	}
-	
-	//print final linked_lst
-	// ft_printf("---head----\n");
-	// print_lst(stacks.aaa);
-	// ft_printf("---second----\n");
-	// print_lst(stacks.bbb);
-	
-	// t_move move;
-	// move = test(stacks);
-	// ft_printf("value: %d\nmove: %d\n %d\n%d\n", move.target, move.amount_a, move.amount_b, move.total_moves);
-
-	
+	}*/
 
 	free(stacks.tab);
 	ft_lstclear(&stacks.aaa, free_content);

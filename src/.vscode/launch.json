@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/nfs/homes/lauger/Documents/PROJECT/cercle 3/push_swap/src",
-      "program": "/nfs/homes/lauger/Documents/PROJECT/cercle 3/push_swap/src/build/Debug/outDebug",
+      "cwd": "/nfs/homes/lauger/Desktop/42-push_swap/src",
+      "program": "/nfs/homes/lauger/Desktop/42-push_swap/src/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
