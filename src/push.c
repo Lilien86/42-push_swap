@@ -3,52 +3,54 @@
 /*                                                        :::      ::::::::   */
 /*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 13:56:58 by lauger            #+#    #+#             */
-/*   Updated: 2024/01/23 13:30:09 by marvin           ###   ########.fr       */
+/*   Updated: 2024/01/31 13:24:38 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void pushAtoB(t_list** stackA, t_list** stackB)
+void	push_a_to_b(t_list **stack_a, t_list **stack_b)
 {
-	t_list	*firstt_listA;
+	t_list	*firstt_list_a;
 
-	if (*stackA != NULL)
+	if (*stack_a != NULL)
 	{
-		firstt_listA = *stackA;
-		*stackA = (*stackA)->next;
-		if (*stackB == NULL)
+		firstt_list_a = *stack_a;
+		*stack_a = (*stack_a)->next;
+		if (*stack_b == NULL)
 		{
-			*stackB = firstt_listA;
-			(*stackB)->next = NULL;
-		} else
+			*stack_b = firstt_list_a;
+			(*stack_b)->next = NULL;
+		}
+		else
 		{
-			firstt_listA->next = *stackB;
-			*stackB = firstt_listA;
+			firstt_list_a->next = *stack_b;
+			*stack_b = firstt_list_a;
 		}
 	}
 	ft_printf("pb\n");
 }
 
-void pushBtoA(t_list** stackB, t_list** stackA)
+void	push_b_to_a(t_list **stack_b, t_list **stack_a)
 {
-	t_list	*firstt_listB;
+	t_list	*firstt_list_b;
 
-	if (*stackB != NULL)
+	if (*stack_b != NULL)
 	{
-		firstt_listB = *stackB;
-		*stackB = (*stackB)->next;
-		if (*stackA == NULL)
+		firstt_list_b = *stack_b;
+		*stack_b = (*stack_b)->next;
+		if (*stack_a == NULL)
 		{
-			*stackA = firstt_listB;
-			(*stackA)->next = NULL;
-		} else
+			*stack_a = firstt_list_b;
+			(*stack_a)->next = NULL;
+		}
+		else
 		{
-			firstt_listB->next = *stackA;
-			*stackA = firstt_listB;
+			firstt_list_b->next = *stack_a;
+			*stack_a = firstt_list_b;
 		}
 	}
 	ft_printf("pa\n");

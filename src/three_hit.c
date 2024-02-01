@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   three_hit.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 08:25:16 by lauger            #+#    #+#             */
-/*   Updated: 2024/01/23 12:46:10 by marvin           ###   ########.fr       */
+/*   Updated: 2024/02/01 10:01:32 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int find_bigest(t_list* head)
+int	find_bigest(t_list *head)
 {
-	t_list*	current;
+	t_list	*current;
 	int		bigest;
 	int		position;
-	int 	current_position;
+	int		current_position;
 
 	if (head == NULL)
-		return -1;
+		return (-1);
 	bigest = *(int *)head->content;
 	position = 0;
 	current_position = 0;
@@ -34,23 +34,23 @@ int find_bigest(t_list* head)
 			position = current_position;
 		}
 		current = current->next;
-	}	
+	}
 	return (position);
 }
 
-int find_smalest(t_list* head)
+int	find_smalest(t_list *head)
 {
-	t_list*	current;
+	t_list	*current;
 	int		smalest;
 	int		position;
-	int 	current_position;
+	int		current_position;
 
-	if (head == NULL)
-		return -1;
 	smalest = *(int *)head->content;
 	position = 0;
 	current_position = 0;
 	current = head->next;
+	if (head == NULL)
+		return (-1);
 	while (current != NULL)
 	{
 		current_position++;
@@ -60,13 +60,14 @@ int find_smalest(t_list* head)
 			position = current_position;
 		}
 		current = current->next;
-	}	
+	}
 	return (position);
 }
 
 int	is_ascending(t_list *head)
 {
 	t_list	*current;
+
 	current = head;
 	while (current != NULL && current->next != NULL)
 	{
@@ -74,9 +75,8 @@ int	is_ascending(t_list *head)
 			return (0);
 		current = current->next;
 	}
-	return 1;
+	return (1);
 }
-
 
 void	three_hit(t_list **head)
 {
@@ -96,5 +96,4 @@ void	three_hit(t_list **head)
 		else if (bigest < smalest)
 			rotate_a(head);
 	}
-	//print_lst(head);
 }

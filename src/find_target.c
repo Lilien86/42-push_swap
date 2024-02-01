@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 10:16:26 by lauger            #+#    #+#             */
-/*   Updated: 2024/01/31 10:47:01 by lauger           ###   ########.fr       */
+/*   Updated: 2024/01/31 13:03:49 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ int	find_target(int nb, t_stacks *stacks)
 	nb_move = 0;
 	if (nb > find_value_bigest(stacks->aaa)
 		|| nb < find_value_smalest(stacks->aaa))
-			return (find_value_smalest(stacks->aaa));
+		return (find_value_smalest(stacks->aaa));
 	while (current)
 	{
-		if (nb < *(int*)current->content)
+		if (nb < *(int *)current->content)
 		{
-			if (target > *(int*)current->content)
-				target = *(int*)current->content;
+			if (target > *(int *)current->content)
+				target = *(int *)current->content;
 		}
 		current = current->next;
 		nb_move++;
@@ -109,12 +109,13 @@ t_move	*create_tab_of_target(t_stacks *stacks)
 
 void	move_cheapest(t_stacks *stacks)
 {
-	t_move	*costs = create_tab_of_target(stacks);
+	t_move	*costs;
 	int		i;
 	t_move	cheapest;
 
-	cheapest.total_moves = INT_MAX;
 	i = 0;
+	cheapest.total_moves = INT_MAX;
+	costs = create_tab_of_target(stacks);
 	while (i < ft_lstsize(stacks->bbb))
 	{
 		if (costs[i].total_moves < cheapest.total_moves)
@@ -197,4 +198,5 @@ void	move_cheapest(t_stacks *stacks)
 			}
 		}
 	}
+	free(costs);
 }

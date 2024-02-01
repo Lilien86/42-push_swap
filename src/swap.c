@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:42:40 by lauger            #+#    #+#             */
-/*   Updated: 2024/01/19 13:58:42 by lauger           ###   ########.fr       */
+/*   Updated: 2024/01/31 13:19:31 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	swap_a(t_list **stack_a)
 {
 	int	*temp;
-	
+
 	temp = NULL;
 	if (*stack_a != NULL && (*stack_a)->next != NULL)
 	{
@@ -25,24 +25,37 @@ void	swap_a(t_list **stack_a)
 	}
 	ft_printf("sa\n");
 }
-/*
-void swap_b(Node **stack_b)
+
+void	swap_b(t_list **stack_b)
 {
-	swap_a(stack_b);
+	int	*temp;
+
+	temp = NULL;
+	if (*stack_b != NULL && (*stack_b)->next != NULL)
+	{
+		temp = (int *)(*stack_b)->content;
+		(*stack_b)->content = (*stack_b)->next->content;
+		(*stack_b)->next->content = temp;
+	}
 	ft_printf("sb\n");
 }
 
-void swap_both(Node **stack_a, Node **stack_b)
+static void	swap_cpy(t_list **stack)
 {
-	swap_a(stack_a);
-	swap_b(stack_b);
+	int	*temp;
+
+	temp = NULL;
+	if (*stack != NULL && (*stack)->next != NULL)
+	{
+		temp = (int *)(*stack)->content;
+		(*stack)->content = (*stack)->next->content;
+		(*stack)->next->content = temp;
+	}
+}
+
+void	swap_a_b(t_list **stack_a, t_list **stack_b)
+{
+	swap_cpy(stack_a);
+	swap_cpy(stack_b);
 	ft_printf("ss\n");
-}*/
-
-
-
-
-
-
-
-
+}

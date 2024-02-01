@@ -6,14 +6,14 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:17:54 by lauger            #+#    #+#             */
-/*   Updated: 2024/01/31 09:22:51 by lauger           ###   ########.fr       */
+/*   Updated: 2024/02/01 10:22:35 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int find_smalest(t_list* head);
-int find_bigest(t_list* head);
+int	find_smalest(t_list *head);
+int	find_bigest(t_list *head);
 int	is_ascending(t_list *head);
 
 int	check_sign(char *s)
@@ -42,41 +42,27 @@ int	check_int(char *s)
 	i = 0;
 	while (s[i] != '\0')
 	{
-		if (!((s[i] >= '0' && s[i] <= '9')
-			|| s[i] == '-' || s[i] == '+'))
+		if (!((s[i] >= '0' && s[i] <= '9')))
 			return (-1);
 		i++;
 	}
-	if (ft_atol(s)  > 2147483647 || ft_atol(s) < -2147483648)
+	if (ft_atol(s) > 2147483647 || ft_atol(s) < -2147483648)
 		return (-1);
-
 	return (0);
 }
 
-int compare_value_list(long long value_compare, t_list *head)
+int	compare_value_list(long long value_compare, t_list *head)
 {
-	t_list		*current;
+	t_list	*current;
 
 	current = head;
 	while (current != NULL)
 	{
 		if (*(int *)(current->content) == value_compare)
-    		return (-1);
+			return (-1);
 		current = current->next;
 	}
-	return 0;
-}
-
-void print_lst(const t_list *head)
-{
-	const t_list *current = head;
-	int i = 0;
-	while (current != NULL)
-	{
-		// ft_printf("\n%d: %d -> \n", i, *(int *)current->content);
-		current = current->next;
-		i++;
-	}
+	return (0);
 }
 
 void	free_content(void *content)
@@ -95,48 +81,15 @@ int	main(int ac, char **av)
 	stacks.aaa = NULL;
 	stacks.bbb = NULL;
 	stacks.aaa = arg_to_lst(stacks.aaa, ac, av);
+	stacks.tab = 0;
 	if (stacks.aaa == NULL)
+		return (0);
+	if (is_ascending(stacks.aaa))
 	{
-		// ft_printf("head = NULL, %p\n", stacks.aaa);
-		return 0;
+		ft_lstclear(&stacks.aaa, free_content);
+		return (0);
 	}
-
-	if (ft_lstsize(stacks.aaa) == 3)
-		three_hit(&stacks.aaa);
-	else if (ft_lstsize(stacks.aaa) == 5)
-		five_hit(&stacks.aaa, &stacks.bbb);
-	
-	//lst_to_tab
-	stacks.nb_elem =  ft_lstsize(stacks.aaa);
-	stacks.tab = list_to_array(stacks.aaa, &stacks.nb_elem);
-	
-	//print tab_to_sort
-	ft_sort_int_tab(stacks.tab, stacks.nb_elem);
-
-	dychotomy(&stacks);
-
-	while (stacks.bbb)
-	{
-		move_cheapest(&stacks);
-		pushBtoA(&stacks.bbb, &stacks.aaa);
-	}
-	
-	while (*(int *)stacks.aaa->content != find_value_smalest(stacks.aaa))
-	{
-		if (find_smalest(stacks.aaa) <= ft_lstsize(stacks.aaa) / 2)
-			rotate_a(&stacks.aaa);
-		if (find_smalest(stacks.aaa) > ft_lstsize(stacks.aaa) / 2)
-			r_rotate_a(&stacks.aaa);
-	}
-
-	/*int smallest_idx = find_smalest(stacks.aaa);
-	int i = 0;
-	while (i < smallest_idx)
-	{
-		rotate_a(&stacks.aaa);
-		i++;
-	}*/
-
+	find_algorythme(stacks);
 	free(stacks.tab);
 	ft_lstclear(&stacks.aaa, free_content);
 	return (0);

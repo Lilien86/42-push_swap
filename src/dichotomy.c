@@ -6,13 +6,13 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 09:22:18 by lauger            #+#    #+#             */
-/*   Updated: 2024/01/29 14:33:51 by lauger           ###   ########.fr       */
+/*   Updated: 2024/02/01 09:55:10 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		find_index(int nb, t_stacks *stacks)
+int	find_index(int nb, t_stacks *stacks)
 {
 	int	i;
 
@@ -20,13 +20,15 @@ int		find_index(int nb, t_stacks *stacks)
 	while (i < stacks->nb_elem)
 	{
 		if (nb == stacks->tab[i])
+		{
 			return (i);
+		}
 		i++;
 	}
 	return (-1);
 }
 
-int		type_of_placement(int index, t_stacks *stacks)
+int	type_of_placement(int index, t_stacks *stacks)
 {
 	if (index <= (stacks->nb_elem / 4))
 		return (1);
@@ -63,12 +65,12 @@ void	dychotomy(t_stacks *stacks)
 			quarter = 4;
 		if (type_placement == quarter - 1)
 		{
-			pushAtoB(&stacks->aaa, &stacks->bbb);
+			push_a_to_b(&stacks->aaa, &stacks->bbb);
 			rotate_b(&stacks->bbb);
 		}
 		else if (type_placement == quarter)
 		{
-			pushAtoB(&stacks->aaa, &stacks->bbb);
+			push_a_to_b(&stacks->aaa, &stacks->bbb);
 		}
 		else
 			rotate_a(&stacks->aaa);

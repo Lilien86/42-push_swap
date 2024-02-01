@@ -6,7 +6,7 @@
 #    By: lauger <lauger@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/11 09:46:39 by lauger            #+#    #+#              #
-#    Updated: 2024/01/29 13:07:23 by lauger           ###   ########.fr        #
+#    Updated: 2024/02/01 10:23:21 by lauger           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,9 @@ LDFLAGS = -L $(LIBFT) -lft
 
 SRC = ./src/main.c ./src/arg_to_lst.c ./src/swap.c ./src/rotate.c \
 ./src/r_rotate.c ./src/push.c ./src/three_hit.c ./src/five_hit.c \
-./src/pre-sorting.c ./src/dichotomy.c ./src/find_target.c
+./src/pre-sorting.c ./src/dichotomy.c ./src/find_target.c \
+./src/utils_five_hit.c ./src/find_algorythme.c
+
 
 OBJ = $(SRC:.c=.o)
 

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   managing_arg.c                                       :+:      :+:    :+:   */
+/*   arg_to_lst.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/17 10:28:25 by lauger            #+#    #+#             */
-/*   Updated: 2024/01/17 10:52:47 by lauger           ###   ########.fr       */
+/*   Created: 2024/02/01 10:20:11 by lauger            #+#    #+#             */
+/*   Updated: 2024/02/01 10:20:15 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,14 @@ int	check_and_add_list(char *arg, t_list **head, char **tab)
 	int			*ptr;
 	t_list		*lst;
 
-	if (check_sign(arg) == -1 || check_int(arg) == -1 || compare_value_list(ft_atol(arg), *head) == -1)
+	if (check_sign(arg) == -1 || check_int(arg) == -1
+		|| compare_value_list(ft_atol(arg), *head) == -1)
 	{
-		if (*head)	
+		if (*head)
 			ft_lstclear(head, free_content);
 		if (tab)
 			ft_free_tab_str(tab);
-		ft_printf("Error:\nthe format is not correct\n");
+		ft_printf("Error\nthe format is not correct\n");
 		exit(0);
 	}
 	else
@@ -54,7 +55,7 @@ void	managing_arg(int ac, char **av, t_list **head)
 				ft_lstclear(head, free_content);
 			if (tab_arg)
 				ft_free_tab_str(tab_arg);
-			ft_printf("Error:\nthe format is not correct\n");
+			ft_printf("Error\nthe format is not correct\n");
 			exit(0);
 		}
 		j = 0;
@@ -68,7 +69,5 @@ void	managing_arg(int ac, char **av, t_list **head)
 t_list	*arg_to_lst(t_list *head, int ac, char **av)
 {
 	managing_arg(ac, av, &head);
-	//ft_lstclear(&head, free_content);
 	return (head);
-	
 }
