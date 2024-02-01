@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 10:10:01 by lauger            #+#    #+#             */
-/*   Updated: 2024/02/01 10:10:21 by lauger           ###   ########.fr       */
+/*   Updated: 2024/02/01 15:15:02 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,5 @@ void	find_algorythme(t_stacks stacks)
 				r_rotate_a(&stacks.aaa);
 		}
 	}
+	free(stacks.tab);
 }

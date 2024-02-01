@@ -88,6 +88,7 @@ char	**ft_split(char const *s, char sep)
 	size_t			start;
 	size_t			j;
 	size_t			i;
+
 	if (s[0] == '\0' || s == NULL)
 		return (NULL);
 	ft_init_vars(&start, &i, &j);

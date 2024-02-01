@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:17:54 by lauger            #+#    #+#             */
-/*   Updated: 2024/02/01 10:22:35 by lauger           ###   ########.fr       */
+/*   Updated: 2024/02/01 15:03:58 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,12 @@ int	check_int(char *s)
 	i = 0;
 	while (s[i] != '\0')
 	{
-		if (!((s[i] >= '0' && s[i] <= '9')))
+		if (!((s[i] >= '0' && s[i] <= '9') || (s[i] == '+' || s[i] == '-')))
+			return (-1);
+		if (i != 0 && (s[i] == '+' || s[i] == '-')
+			&& (s[i - 1] >= '0' && s[i - 1] <= '9'))
+			return (-1);
+		if (ft_strlen(s) == 1 && (s[0] == '+' || s[0] == '-'))
 			return (-1);
 		i++;
 	}
@@ -91,6 +96,9 @@ int	main(int ac, char **av)
 	}
 	find_algorythme(stacks);
 	free(stacks.tab);
-	ft_lstclear(&stacks.aaa, free_content);
+	if (stacks.aaa)
+		ft_lstclear(&stacks.aaa, free_content);
+	if (stacks.bbb)
+		ft_lstclear(&stacks.bbb, free_content);
 	return (0);
 }

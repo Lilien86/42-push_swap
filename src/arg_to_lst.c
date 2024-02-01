@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 10:20:11 by lauger            #+#    #+#             */
-/*   Updated: 2024/02/01 10:20:15 by lauger           ###   ########.fr       */
+/*   Updated: 2024/02/01 14:09:45 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ int	check_and_add_list(char *arg, t_list **head, char **tab)
 			ft_lstclear(head, free_content);
 		if (tab)
 			ft_free_tab_str(tab);
-		ft_printf("Error\nthe format is not correct\n");
+		ft_putendl_fd("Error", 2);
+		ft_putendl_fd("the format is not correct", 2);
 		exit(0);
 	}
 	else
@@ -37,6 +38,22 @@ int	check_and_add_list(char *arg, t_list **head, char **tab)
 		ft_lstadd_back(head, lst);
 	}
 	return (1);
+}
+
+int	only_space(char *s)
+{
+	int	len_s;
+	int	i;
+
+	len_s = ft_strlen(s);
+	i = 0;
+	while (i < len_s)
+	{
+		if (s[i] != ' ')
+			return (0);
+		i++;
+	}
+	return (-1);
 }
 
 void	managing_arg(int ac, char **av, t_list **head)
@@ -53,9 +70,9 @@ void	managing_arg(int ac, char **av, t_list **head)
 		{
 			if (*head)
 				ft_lstclear(head, free_content);
-			if (tab_arg)
-				ft_free_tab_str(tab_arg);
-			ft_printf("Error\nthe format is not correct\n");
+			ft_free_tab_str(tab_arg);
+			ft_putendl_fd("Error", 2);
+			ft_putendl_fd("the format is not correct", 2);
 			exit(0);
 		}
 		j = 0;
