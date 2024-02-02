@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 10:16:26 by lauger            #+#    #+#             */
-/*   Updated: 2024/01/31 13:03:49 by lauger           ###   ########.fr       */
+/*   Updated: 2024/02/02 13:25:16 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,8 +122,28 @@ void	move_cheapest(t_stacks *stacks)
 			cheapest = costs[i];
 		i++;
 	}
-	i = 0;
-	if (cheapest.med_a == cheapest.med_b)
+	while ((--cheapest.amount_a >= 0) | (--cheapest.amount_b >= 0))
+	{
+		if (cheapest.med_a == cheapest.med_b && cheapest.amount_a >= 0 && cheapest.amount_b >= 0)
+		{
+			if (cheapest.med_a == 1)
+				rotate_a_b(&stacks->aaa, &stacks->bbb);
+			if (cheapest.med_a == 2)
+				r_rotate_a_b(&stacks->aaa, &stacks->bbb);
+		}
+		else
+		{
+			if (cheapest.med_a == 1 && cheapest.amount_a >= 0)
+				rotate_a(&stacks->aaa);
+			if (cheapest.med_a == 2 && cheapest.amount_a >= 0)
+				r_rotate_a(&stacks->aaa);
+			if (cheapest.med_b == 1 && cheapest.amount_b >= 0)
+				rotate_b(&stacks->bbb);
+			if (cheapest.med_b == 2 && cheapest.amount_b >= 0)
+				r_rotate_b(&stacks->bbb);
+		}
+	}
+	/*if (cheapest.med_a == cheapest.med_b)
 	{
 		if (cheapest.med_a == 1)
 		{
@@ -197,6 +217,6 @@ void	move_cheapest(t_stacks *stacks)
 				i++;
 			}
 		}
-	}
+	}*/
 	free(costs);
 }
