@@ -6,13 +6,13 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 09:42:35 by lauger            #+#    #+#             */
-/*   Updated: 2024/01/31 08:45:34 by lauger           ###   ########.fr       */
+/*   Updated: 2024/02/02 14:56:59 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void ft_print_tab(int *array, int size)
+void	ft_print_tab(int *array, int size)
 {
 	int	i;
 

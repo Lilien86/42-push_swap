@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:17:54 by lauger            #+#    #+#             */
-/*   Updated: 2024/02/01 15:03:58 by lauger           ###   ########.fr       */
+/*   Updated: 2024/02/02 16:10:59 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int	main(int ac, char **av)
 		ft_lstclear(&stacks.aaa, free_content);
 		return (0);
 	}
-	find_algorythme(stacks);
+	find_algorythme(&stacks);
 	free(stacks.tab);
 	if (stacks.aaa)
 		ft_lstclear(&stacks.aaa, free_content);

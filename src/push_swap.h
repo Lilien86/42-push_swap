@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 11:07:07 by lauger            #+#    #+#             */
-/*   Updated: 2024/02/01 10:10:45 by lauger           ###   ########.fr       */
+/*   Updated: 2024/02/02 16:10:48 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include "libft.h"
-#include <limits.h>
+# include <limits.h>
 
 typedef struct s_info_lst
 {
@@ -81,6 +81,9 @@ int		compare_value_list(long long value_compare, t_list *head);
 void	make_up_and_push(int position, t_list **head, t_list **second);
 int		check_int(char *s);
 int		check_sign(char *s);
+int		index_of_target(int target, t_stacks *stacks);
+int		find_target(int nb, t_stacks *stacks);
+int		mediane(t_list *list, int index);
 //END UTILS
 //#########
 
@@ -89,6 +92,6 @@ void	five_hit(t_list **head, t_list **second);
 void	dychotomy(t_stacks *stacks);
 t_move	*create_tab_of_target(t_stacks *stacks);
 void	move_cheapest(t_stacks *stacks);
-void	find_algorythme(t_stacks stacks);
+void	find_algorythme(t_stacks *stacks);
 
 #endif

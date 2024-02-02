@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 11:13:27 by marvin            #+#    #+#             */
-/*   Updated: 2024/01/31 13:40:58 by lauger           ###   ########.fr       */
+/*   Updated: 2024/02/02 14:33:31 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,24 @@ void	move_indexfor_zero(t_info_lst *info, t_list **head, t_list **second)
 	}
 }
 
+void	five_hit_2(t_info_lst info, t_list **head, t_list **second)
+{
+	while (is_value_in_list(*head, info.bigest_value)
+		|| is_value_in_list(*head, info.smalest_value))
+	{
+		info.bigest = find_position(*head, info.bigest_value);
+		info.smalest = find_position(*head, info.smalest_value);
+		if ((info.bigest <= info.smalest
+				|| !is_value_in_list(*head, info.smalest_value))
+			&& is_value_in_list(*head, info.bigest_value))
+			make_up_and_push(info.bigest, head, second);
+		else if ((info.smalest < info.bigest
+				|| !is_value_in_list(*head, info.bigest_value))
+			&& is_value_in_list(*head, info.smalest_value))
+			make_up_and_push(info.smalest, head, second);
+	}
+}
+
 void	five_hit(t_list **head, t_list **second)
 {
 	t_info_lst	info;
@@ -59,18 +77,7 @@ void	five_hit(t_list **head, t_list **second)
 	info.size = 4;
 	move_index_for_end(&info, head, second);
 	move_indexfor_zero(&info, head, second);
-	while (is_value_in_list(*head, info.bigest_value)
-		|| is_value_in_list(*head, info.smalest_value))
-	{
-		info.bigest = find_position(*head, info.bigest_value);
-		info.smalest = find_position(*head, info.smalest_value);
-		if ((info.bigest <= info.smalest || !is_value_in_list(*head,
-			info.smalest_value)) && is_value_in_list(*head, info.bigest_value))
-			make_up_and_push(info.bigest, head, second);
-		else if ((info.smalest < info.bigest || !is_value_in_list(*head,
-			info.bigest_value)) && is_value_in_list(*head, info.smalest_value))
-			make_up_and_push(info.smalest, head, second);
-	}
+	five_hit_2(info, head, second);
 	three_hit(head);
 	push_b_to_a(second, head);
 	if (is_ascending(*head) == 0)

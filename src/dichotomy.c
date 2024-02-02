@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 09:22:18 by lauger            #+#    #+#             */
-/*   Updated: 2024/02/01 09:55:10 by lauger           ###   ########.fr       */
+/*   Updated: 2024/02/02 14:13:17 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,28 @@ int	type_of_placement(int index, t_stacks *stacks)
 	return (0);
 }
 
+void	dychotomy_2(t_stacks *stacks, int i, int quarter, int type_placement)
+{
+	if (ft_lstsize(stacks->aaa) == 3)
+	{
+		three_hit(&stacks->aaa);
+		return ;
+	}
+	if (i > stacks->nb_elem)
+		quarter = 4;
+	if (type_placement == quarter - 1)
+	{
+		push_a_to_b(&stacks->aaa, &stacks->bbb);
+		rotate_b(&stacks->bbb);
+	}
+	else if (type_placement == quarter)
+	{
+		push_a_to_b(&stacks->aaa, &stacks->bbb);
+	}
+	else
+		rotate_a(&stacks->aaa);
+}
+
 void	dychotomy(t_stacks *stacks)
 {
 	t_list	*current;
@@ -56,24 +78,7 @@ void	dychotomy(t_stacks *stacks)
 		current = stacks->aaa;
 		index = find_index(*(int *)current->content, stacks);
 		type_placement = type_of_placement(index, stacks);
-		if (ft_lstsize(stacks->aaa) == 3)
-		{
-			three_hit(&stacks->aaa);
-			return ;
-		}
-		if (i > stacks->nb_elem)
-			quarter = 4;
-		if (type_placement == quarter - 1)
-		{
-			push_a_to_b(&stacks->aaa, &stacks->bbb);
-			rotate_b(&stacks->bbb);
-		}
-		else if (type_placement == quarter)
-		{
-			push_a_to_b(&stacks->aaa, &stacks->bbb);
-		}
-		else
-			rotate_a(&stacks->aaa);
+		dychotomy_2(stacks, i, quarter, type_placement);
 		i++;
 	}
 }
