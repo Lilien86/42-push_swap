@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_target.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 10:16:26 by lauger            #+#    #+#             */
-/*   Updated: 2024/02/02 14:31:09 by lauger           ###   ########.fr       */
+/*   Updated: 2024/02/05 08:04:25 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,12 @@ void	create_tab_of_target_2(t_stacks *stacks, t_move *costs, int i)
 
 t_move	*create_tab_of_target(t_stacks *stacks)
 {
-	t_list	*curent_a;
+	//t_list	*curent_a;
 	t_list	*curent_b;
 	t_move	*costs;
 	int		i;
 
-	curent_a = stacks->aaa;
+	//curent_a = stacks->aaa;
 	curent_b = stacks->bbb;
 	i = 0;
 	costs = malloc(sizeof(t_move) * ft_lstsize(stacks->bbb));
